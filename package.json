@@ -2,7 +2,7 @@
   "name": "slack_extra",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -15,5 +15,18 @@
   "bugs": {
     "url": "https://github.com/slacker-team/slack_extra/issues"
   },
-  "homepage": "https://github.com/slacker-team/slack_extra#readme"
+  "homepage": "https://github.com/slacker-team/slack_extra#readme",
+  "devDependencies": {
+    "babelify": "^7.2.0",
+    "browserify-incremental": "^3.0.1",
+    "glob": "^6.0.3",
+    "gulp": "^3.9.0",
+    "gulp-babel": "^6.1.1",
+    "gulp-load-plugins": "^1.1.0",
+    "gulp-notify": "^2.2.0",
+    "gulp-sass": "^2.1.1"
+  },
+  "dependencies": {
+    "browserify": "^12.0.1"
+  }
 }
