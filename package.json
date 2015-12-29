@@ -1,0 +1,19 @@
+{
+  "name": "slack_extra",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/slacker-team/slack_extra.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/slacker-team/slack_extra/issues"
+  },
+  "homepage": "https://github.com/slacker-team/slack_extra#readme"
+}
