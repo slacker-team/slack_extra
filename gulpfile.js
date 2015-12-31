@@ -9,11 +9,12 @@ var libDir = 'app';
 gulp.task('compile', [
     'clean',
     'compile-es6',
+    'sass',
   ]
 );
 
-gulp.task('compile-es6', function(){
-  return gulp.src(srcDir + '/**/*.{js,jsx}')
+gulp.task('compile-es6', ['clean'], function(){
+  gulp.src(srcDir + '/**/*.js')
     .pipe($.plumber({
       errorHandler: $.notify.onError("Error: <%= error.message %>")
     }))
@@ -22,16 +23,17 @@ gulp.task('compile-es6', function(){
 });
 
 gulp.task('clean', function () {
-    del(libDir + '/**/*.{html,js,css}')
+  return del(libDir + '/**/*.{js,css}')
   }
 );
 
-gulp.task('sass', function() {
-  gulp.src(srcDir + '/stylesheets/**/*scss')
+gulp.task('sass', ['clean'], function() {
+  gulp.src(srcDir + '/stylesheets/**/*.scss')
     .pipe($.plumber({
       errorHandler: $.notify.onError("Error: <%= error.message %>")
     }))
     .pipe($.sass())
+    .pipe($.concat('stylesheets.css'))
     .pipe(gulp.dest(libDir + '/stylesheets'));
 });
 
@@ -40,7 +42,7 @@ gulp.task('electron-start', function(){
 })
 
 gulp.task('watch', ['compile'], function(){
-  gulp.watch(srcDir + '/**/*.{js,jsx}', ['compile']);
+  gulp.watch(srcDir + '/**/*.{js,scss}', ['compile']);
   gulp.watch(['main.js'], electron.restart);
   gulp.watch(['index.html', libDir + '/**/*.{html,js,css}'], electron.reload);
 });
