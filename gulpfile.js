@@ -1,6 +1,5 @@
 var gulp = require('gulp');
 var electron = require('electron-connect').server.create();
-var glob = require('glob')
 var del = require('del')
 var $ = require('gulp-load-plugins')();
 
@@ -15,9 +14,10 @@ gulp.task('compile', [
 
 gulp.task('compile-es6', function(){
   return gulp.src(srcDir + '/**/*.{js,jsx}')
-    .pipe($.babel({
-      presets: ['react', 'es2015']
+    .pipe($.plumber({
+      errorHandler: $.notify.onError("Error: <%= error.message %>")
     }))
+    .pipe($.babel())
     .pipe(gulp.dest(libDir));
 });
 
@@ -33,15 +33,17 @@ gulp.task('watch', function() {
 gulp.task('sass', function() {
   // ディレクトリ構造を変更次第passは変更する
   gulp.src('sass/**/*scss')
-    .pipe(sass())
-    .pipe(autoprefixer())
+    .pipe($.plumber({
+      errorHandler: $.notify.onError("Error: <%= error.message %>")
+    }))
+    .pipe($.sass())
     .pipe(gulp.dest("./css"));
 });
 
 
 gulp.task('start', ['compile'], function(){
   electron.start();
-  gulp.watch(srcDir + '/**/*.{js,jsx}', ['compile', 'sass']);
+  gulp.watch(srcDir + '/**/*.{js,jsx}', ['compile']);
   gulp.watch(['main.js'], electron.restart);
   gulp.watch(['index.html', libDir + '/**/*.{html,js,css}'], electron.reload);
 });
