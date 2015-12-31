@@ -7,13 +7,16 @@ var mainWindow = null;
 
 // finish app if all window are closed
 app.on('window-all-closed', function() {
-  app.quit();
+  if (process.platform != 'darwin') {
+    app.quit();
+  }
 });
 
-// initialize electron
+// initialize scene
 app.on('ready', function() {
   mainWindow = new BrowserWindow({width: 800, height: 600});
   mainWindow.loadURL('file://' + __dirname + '/index.html');
+  mainWindow.webContents.openDevTools();
 
   mainWindow.on('closed', function() {
     mainWindow = null;
