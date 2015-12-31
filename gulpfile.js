@@ -4,7 +4,7 @@ var del = require('del')
 var $ = require('gulp-load-plugins')();
 
 var srcDir = 'src';
-var libDir = 'build';
+var libDir = 'app';
 
 gulp.task('compile', [
     'clean',
