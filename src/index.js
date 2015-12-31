@@ -1,4 +1,6 @@
-class CommentBox extends React.Component {
+import React, { Component } from 'react';
+
+class CommentBox extends Component {
   render() {
     return (
       <div className="commentBox">
