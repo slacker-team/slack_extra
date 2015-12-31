@@ -27,15 +27,13 @@ gulp.task('clean', function () {
 );
 
 gulp.task('sass', function() {
-  // ディレクトリ構造を変更次第passは変更する
-  gulp.src('sass/**/*scss')
+  gulp.src(srcDir + '/stylesheets/**/*scss')
     .pipe($.plumber({
       errorHandler: $.notify.onError("Error: <%= error.message %>")
     }))
     .pipe($.sass())
-    .pipe(gulp.dest("./css"));
+    .pipe(gulp.dest(libDir + '/stylesheets'));
 });
-
 
 gulp.task('electron-start', function(){
   electron.start();

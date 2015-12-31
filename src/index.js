@@ -6,7 +6,6 @@ class CommentBox extends Component {
     return (
       <div className="commentBox">
         Hello, world! I am a CommentBox.
-        hogehoge
       </div>
     );
   }
