@@ -15,3 +15,5 @@ ReactDOM.render(
   <CommentBox />,
   document.getElementById('container')
 );
+
+
