@@ -1,19 +1,18 @@
-import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import React, { Component } from 'react';
+import configureStore from './store/configureStore';
+import { Provider } from 'react-redux';
+import createBrowserHistory from 'history/lib/createBrowserHistory'
+import { Router, Route, RouteHandler, IndexRoute } from 'react-router';
+import DashBoard from './containers/DashBoard'
 
-class CommentBox extends Component {
-  render() {
-    return (
-      <div className="commentBox">
-        Hello, world! I am a CommentBox!!
-      </div>
-    );
-  }
-}
+const store = configureStore();
+const history = createBrowserHistory();
+
 
 ReactDOM.render(
-  <CommentBox />,
-  document.getElementById('container')
+  <Provider store={store}>
+    <DashBoard />
+  </Provider>,
+  document.getElementById('root')
 );
-
-
