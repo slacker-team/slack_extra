@@ -18,7 +18,7 @@ gulp.task('compile-es6', ['clean'], function(){
     .pipe($.plumber({
       errorHandler: $.notify.onError("Error: <%= error.message %>")
     }))
-    .pipe($.babel())
+    .pipe($.webpack(require('./webpack.config.js')))
     .pipe(gulp.dest(libDir));
 });
 
